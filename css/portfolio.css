@@ -1,0 +1,33 @@
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+/* Global */
+html{
+  min-height: 100%;
+}
+
+.header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 300%;
+}
+.subheader {
+  text-align: center;
+  font-size: 100%;
+  font-style: italic;
+}
+body{
+  font-family: 'Anonymous Pro', monospace;
+}
+
+body {
+  background-color: #f8be4b;
+}
+
+.move-button {
+  font-family: 'Source Sans Pro';
+}
+
+.return {
+  text-align: center;
+  font-family: 'Source Sans Pro';
+  font-weight: bold;
+}
