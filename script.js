@@ -1,5 +1,7 @@
 window.onload = function(){
     document.getElementById("design").addEventListener("mouseover", function() {
+        
+        document.getElementById("body").style.backgroundSize = "100%";
   
         document.getElementById("body").style.backgroundImage = "url(images/web_bg_4_final.png)";
 
@@ -36,6 +38,9 @@ window.onload = function(){
     }, false);
 
 };
+
+document.getElementById("body").style.backgroundSize = "100%";
+document.getElementById("body").style.bottom = 0;
 
 new WOW().init();
 
