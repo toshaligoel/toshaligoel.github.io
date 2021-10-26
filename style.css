@@ -101,7 +101,7 @@ a:hover {
     color: #c2c2ff;
 }
 
-.active{
+.active {
     text-decoration: underline;
     text-underline-offset: 7px;
 }
@@ -111,8 +111,8 @@ a:hover {
 }
 
 footer {
-    font-family: Source Code Pro;
-    font-size: 12px;
+    font-family: 'Source Code Pro', sans-serif;
+    font-size: 75%;
 }
 
 .center {
@@ -208,4 +208,18 @@ footer {
 
 #eng_link:hover {
     color: #c2c2ff;
+}
+
+@media screen and (max-width: 815px) {
+  body {
+      background-repeat: no-repeat;
+      width: 60%;
+      background-position: bottom;
+      background-size: 500%;
+      margin: auto 2%;
+  }
+    
+    footer {
+        visibility: hidden;
+    }
 }
