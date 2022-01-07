@@ -135,6 +135,10 @@ footer {
     
 }
 
+.scroll {
+    width: 100%;
+}
+
 .right {
     float: right;
 }

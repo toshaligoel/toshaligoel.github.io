@@ -158,11 +158,8 @@
     <h2>Computer Networks: Chatroom Application</h2><br>
     <p class="center"><em>I worked in a team to design a client-server based chatroom application using Flask, which would allow users to chat in groups of their choosing.</em></p><br><br>
     
-    <div class="pill wow fadeInUp box" style="margin-bottom:3%">
         <img src="images/chatroom_index.png" width="100%">
-   
-        
-        </div>
+        <br><br>
 
         <div class="fadeInUp">
         <h3>Research, Ideation, and Structural Design</h3>
@@ -194,14 +191,14 @@
             <div class='row'>
             
         <div class="col-lg-3">
-            <p> &nbsp;</p>
+            <p></p>
         <p>The user interface design was modeled after old-school chatrooms, with typically simple UIs — often presented in a popular dark theme — that spanned few pages. I chose the color scheme, font family, and made all other style decisions in accordance with accessible design practices.</p><br>
             
-        <p>We decided to use Flask, as it is an extremely useful framework to build web applications that a few of us were already familiar with. Our Flask application contains several Jinja2 templates in the front-end, as well as client code that we decided to execute in JavaScript - specifically, Ajax, in order to take advantage of its real-time abilities.</p><br>
+        <p>Our Flask application contains several Jinja2 templates in the front-end, as well as client code that we decided to execute in JavaScript - specifically, Ajax, in order to take advantage of its real-time abilities.</p><br>
         
         <p>The video on the right provides a quick walkthrough of our entire application.</p></div>
             
-            <div class="col-lg-9 pill wow fadeInUp box"><video autoplay muted loop class="myVideo">
+            <div class="col-lg-9 pill wow fadeInUp box"><video autoplay muted loop class="scroll">
                     <source src="images/chatroom_walkthru.mp4" type="video/MP4" width="100%">
                 </video>
                 
@@ -215,6 +212,168 @@
         </div>
     <br><br>
     
+    <h2>Working in the Full-Stack: Course Matching Application</h2>
+    <br>
+    <p class="center"><em>I worked in a team to design and implement an application that would recommend CS elective courses to students based on various factors such as class year, major, etc.
+        I was part of the sub-team that worked on managing the databases, designing the front-end, and implementing the functionality in the back-end. Our other sub-team primarily
+        focused on designing and implementing the algorithm.
+    </em></p>
+    
+    <br>
+    <div class="center">
+    <img src="images/304_signup.png" width="100%">
+</div>
+    <br><br>
+
+    <h3>Structural Design</h3><p></p>
+    <div class="row">
+    <div class="col-lg-6" style="margin-top:2%">
+        <img src="images/304_entitymap.jpg" width="100%">
+</div>
+<div class="col-lg-6">
+<p style="margin-bottom:2%">One of the first things we worked on was an entity map of the database structure
+    of our application. We laid out the relationships between the various types of users
+    we wanted to accomodate, as well as the information we would gather from each.
+</p>
+<div class="pill wow fadeInUp box">
+    <img src="images/304_erdiagram.png" width="100%">
+    <p>The above diagram is the final structure we built our application based on, and the diagram to the left
+        is a preliminary sketch we did of the data.
+    </p>
+</div>
+</div>
+</div>
+<br><br>
+
+
+    <h3>Low-Fidelity Prototyping</h3><p></p>
+    <div class="pill wow fadeInUp box">
+        <div class="row">
+        <div class="col-lg-8">
+            <img src="images/304_prof-courses.jpg" width="100%">
+        </div>
+        <div class='col-lg-4'>
+            <img src="images/304_roster.jpg" width="100%">
+        </div>
+            <p><b>From left to right: </b>sketches of the course ranking form page, 
+                the professor dashboard and professor course view page, and the course roster page.
+            </p>
+        </div>
+    </div>
+    <br>
+
+    <br>
+    <div class="row">
+    <div class="col-lg-3">
+        <p>I designed and implemented the front-end of the application, and decided to start with
+            some paper prototypes to give myself a better understanding of how many pages I would
+            be creating, what kinds of styling I could use to unify them, and what the inheritance
+            relationships between the templates would look like. 
+        </p>
+        <p>The picture to the right is my rough mockup of the course roster page (top left), the 
+            signup landing page (bottom left), a student dashboard (top right), and the form for students to enter their information & preferences (bottom right).
+            These were the first pages I sketched out, and they underwent some change before I went into the 
+            coding process - for example, the course ranking form was later combined with the preferences pages.
+        </p>
+    </div>
+    <div class="col-lg-9">
+        <img src="images/304_welcome-students.jpg" width="100%">
+    </div>
+    </div>
+    <p></p>
+    <br><br>
+
+
+    <h3>High-Fidelity Prototyping</h3><p></p>
+    <div class="pill wow fadeInUp box">
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="images/signup.png" width="100%">
+        </div>
+        <div class="col-lg-6">
+            <img src="images/roster.png" width="100%">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-9">
+                <video autoplay muted loop class="scroll">
+                    <source src="images/304_studentscroll.mov" type="video/MP4">
+                </video>
+        </div>
+        <div class="col-lg-3">
+            <p><b>Top: </b>the final prototypes for the signup and course roster pages. I
+            converted my initial designs to Figma prototypes, then created templates using HTML and
+            Jinja2 as well as consistent CSS styling for all templates. As we were told this project
+            could potentially be used by the college in the future, I chose a simple, clean style 
+            that matched the college's branding.</p>
+            <p><b>Left: </b>the final prototype for a sample course page, containing a course description and an
+                embedded syllabus.</p>
+        </div>
+    </div>
+    </div>
+    <br><br>
+
+    <h3>Building Out the Backend</h3><p></p>
+    <p class="center">I worked on building several features in the application, including the dynamically updated course roster, 
+        the forms for professors and students to submit courses and preferences respectively, the dynamically updated
+        dashboards for all users, and file upload. I'm currently working on adding search and improving the update functionality.
+    </p>
+    <p></p><br>
+    <div class="row">
+        <div class="col-lg-9">
+            <video autoplay muted loop class="scroll">
+                <source src="images/304_addcourse.mov" type="video/MP4">
+            </video>
+        </div>
+        <div class="col-lg-3">
+            <h4>Adding a New Course</h4><br>
+            <p><b>Left: </b>From the professor persepctive, the option to add a course exists.
+            The clip shows a professor entering a course titled "Databases with Web Interfaces," 
+            which then redirects to the newly created page.</p>
+            <p>There are no students matched to the course yet, as the algorithm has not yet been run.
+
+            </p>
+        </div>
+    </div>
+    <br>
+    <div class="pill wow fadeInUp box">
+    <div class="row">
+            <div class="col-lg-3">
+                <h4>Adding Student Preferences</h4><br>
+                <p><b>Right: </b>From the student perspective. A student fills out their preferences
+                regarding course ranks as well as some information about themselves, the courses they rank
+                as their top 5 appearing on their dashboard in order for easy access.</p>
+                <p>Each of the cards on their dashboard links to the designated course page.</p>
+            </div>
+        <div class="col-lg-9">
+            <video autoplay muted loop class="scroll">
+                <source src="images/304_studentprefs.mp4" type="video/MP4">
+            </video>
+        </div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-lg-9">
+            <video autoplay muted loop class="scroll">
+                <source src="images/304_algorithm.mov" type="video/MP4">
+            </video>
+        </div>
+        <div class="col-lg-3">
+            <h4>Running the Algorithm</h4><br>
+            <p><b>Left: </b>First, from the professor perspective, the algorithm is run (which only professors
+            have access to) and students are assigned to various courses according to their class
+            years, preferences, etc. From the student perspective, the course they were assigned to
+            can now be seen on their dashboard under "Your Matches."</p>
+            <p>Upon clicking upon their match, it can be seen that students do not have access 
+                to the information professors do; for example, who else has been matched to that course.
+            </p>
+        </div>
+</div>
+<br><br>
+
     
     <h2>Unsolicited Redesign: Nextdoor</h2><br>
     <p class="center"><em>As part of a recreational challenge to redesign an application or website, I reimagined the Nextdoor website. I used iterative design practices to evaluate the website, and added graphics and colors for increased consistency, accessibility, and clarity.</em></p><br><br>
