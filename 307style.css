@@ -1,21 +1,12 @@
-/* MacBook Pro - 1 */
-
 body {
     position: relative;
-
     /* dark-purple */
-
     background: #2D2945;
     color: white;
-    font-family: Helvetica Neue;
     font-style: normal;
     font-weight: normal;
     /*background-image: url('images/web_bg_2_final.png');*/
     background-size: cover;
-}
-
-.academicQuad p {
-    text-align: center;
 }
 
 .lamp img {
@@ -55,7 +46,7 @@ h3 {
     font-style: italic;
 }
 
-h1, h2, h3{
+h1, h2, h3, p{
     text-align: center;
 }
 

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <link rel="icon" href="images/favicon.ico">
+    <title>3D Campus Rendering</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css"> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+
+<nav class="head-nav navbar navbar-expand-sm">
+  
+  <a class="navbar-brand" id="logo" href="index.html"><img src="images/logo_circle.png" alt="..." width="6.5%"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ml-auto">
+<li class="nav-item">
+  <a class="nav-link" href="index.html">HOME</a>
+</li>
+<li class="nav-item active">
+  <a class="nav-link" href="projects.html">PROJECTS<span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Artwork
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+    <a class="dropdown-item" href="fine_art.html">Fine Art</a>
+    <a class="dropdown-item" href="digital_art.html">Digital Art</a>
+  </div>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="Resume-Toshali%20Goel-UX_Update(Avenir).pdf">RESUME</a>
+</li>
+</ul>
+</div>
+</nav>
+
+
+<body>
+
+<div class="container">
+<br>
+
+<style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+<script src="https://cs.wellesley.edu/~cs307/threejs/libs/three-r95.all.js">
+"https://cs.wellesley.edu/~cs307/threejs/libs/three-r80.min.js"
+</script>
+<!-- omit dat.gui and OrbitControls if you don't need them -->
+<script src="https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls-r95.js">
+"https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls-r80.js"
+</script>
+<script src="https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui-r95.js">
+"https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui-r80.min.js"
+</script>
+<script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw-sp21.js">
+"https://cs.wellesley.edu/~cs307/threejs/libs/tw-fa18.js"
+</script>
+<script src="https://cs.wellesley.edu/~cs307/lectures-s21/TubeGeometryNew.js"></script>
+<script src="https://cs.wellesley.edu/~cs307/lectures-s21/TubeRadialGeometry.js"></script>
+<script src="greenHall.js"></script>
+<script src="jewett.js"></script>
+<script src="lamp.js"></script>
+<script src="pendletons.js"></script>
+</head>
+<body>
+<h1>The Academic Quad</h1>
+<h2>Computer Graphics and Animation</h2><br>
+<p>I worked with a partner to create this 3D graphics rendering of the academic quad at Wellesley.
+  <b>Press "g" to start the animation, "1" to advance one frame, or spacebar
+    to stop the animation - and just reload the page to reset!</b> 
+
+  <br>
+<script>
+// We always need a scene.
+var scene = new THREE.Scene();
+scene.background = new THREE.Color(0xccdee6);
+
+//default to summer mode
+var guiParams = {
+    Season: "Summer",
+    Time: "Day"
+};
+
+//add ground plane underneath all buildings
+
+var groundMat = new THREE.MeshPhongMaterial({
+                            color: 0x6b5a51,
+                            specular: 0x808080,
+                            shininess: 0,
+                            side: THREE.DoubleSide});
+var groundGeom = new THREE.PlaneGeometry(800,500);
+var ground = new THREE.Mesh(groundGeom, groundMat);
+ground.receiveShadow = true;
+ground.position.set(100,-12,0);
+ground.rotation.set(-Math.PI/2,0,Math.PI/2.2);
+scene.add(ground);
+
+var grassHex = 0xffffff;
+
+//add grass center
+function setGrassMaterial(textures) {
+  var grassGeom = new THREE.CircleGeometry(150,50);
+  var grassMat = new THREE.MeshBasicMaterial({color: grassHex,
+                                        map: textures[0],
+                                        side: THREE.DoubleSide});
+
+  textures[0].repeat.set(5,5);
+  textures[0].wrapS = THREE.RepeatWrapping;
+  textures[0].wrapT = THREE.MirroredRepeatWrapping;
+  var grass = new THREE.Mesh(grassGeom, grassMat);
+  grass.receiveShadow = true;
+  grass.rotateX(-Math.PI/2);
+  grass.position.set(50,-9.9,-15);
+  scene.add(grass);
+
+  var grassFieldLGeom = new THREE.PlaneGeometry(300,200);
+  var grassFieldL = new THREE.Mesh(grassFieldLGeom, grassMat);
+  grassFieldL.receiveShadow = true;
+  grassFieldL.rotateX(-Math.PI/2);
+  grassFieldL.rotateZ(Math.PI/1.07);
+
+  grassFieldL.position.set(-50,-9.9,250);
+  scene.add(grassFieldL);
+
+  var grassFieldL2 = grassFieldL.clone();
+  grassFieldL2.translateX(200);
+  scene.add(grassFieldL2);
+
+  var grassFieldL3 = grassFieldL.clone();
+  grassFieldL3.translateX(-200);
+  scene.add(grassFieldL3);
+
+  //grass for in front of jewett, needs to be trapezoidal
+  var jewettGrassLGeom = new THREE.CylinderGeometry( 0.0 / Math.sqrt( 2 ), 1 / Math.sqrt( 2 ), 1, 4, 1 ); // size of top can be changed
+  jewettGrassLGeom.rotateY( Math.PI / 4 );
+  var jewettGrassL = new THREE.Mesh(jewettGrassLGeom, grassMat);
+  jewettGrassL.receiveShadow = true;
+  jewettGrassL.rotateX(-Math.PI/2);
+  jewettGrassL.rotateZ(-Math.PI/14);
+  jewettGrassL.scale.set(120,100,2);
+  jewettGrassL.position.set(-130,-9.9,105);
+  scene.add(jewettGrassL);
+
+  var greenGrassR = jewettGrassL.clone();
+  greenGrassR.translateX(300);
+  scene.add(greenGrassR);
+
+  var greenGrassR2Geom = new THREE.PlaneGeometry(150,70);
+  var greenGrassR2 = new THREE.Mesh(greenGrassR2Geom, grassMat);
+  greenGrassR2.receiveShadow = true;
+  greenGrassR2.scale.set(1,1.7,1);
+  greenGrassR2.rotateX(-Math.PI/2);
+  greenGrassR2.rotateZ(Math.PI/1.07);
+  greenGrassR2.position.set(237,-9.9,190);
+  scene.add(greenGrassR2);
+
+  var jewettGrassL2 = greenGrassR2.clone();
+  jewettGrassL2.scale.set(1.6,1.7,1);
+  jewettGrassL2.translateX(495);
+  scene.add(jewettGrassL2);
+
+  var greenGrassL = greenGrassR.clone();
+  greenGrassL.rotateZ(-Math.PI);
+  greenGrassL.translateY(-270);
+  greenGrassL.translateX(-15);
+  scene.add(greenGrassL);
+
+  var greenGrassL2 = greenGrassR2.clone();
+  greenGrassL2.translateY(-280);
+  greenGrassL2.translateX(-20);
+  scene.add(greenGrassL2);
+
+  var jewettGrassR = greenGrassL.clone();
+  jewettGrassR.translateX(350);
+  scene.add(jewettGrassR);
+
+  var jewettGrassR2 = jewettGrassL2.clone();
+  jewettGrassR2.translateY(-290);
+  jewettGrassR2.translateX(30);
+  scene.add(jewettGrassR2);
+
+  var grassFieldR = grassFieldL.clone();
+  grassFieldR.translateY(-540);
+  grassFieldR.translateX(-40);
+  scene.add(grassFieldR);
+
+  var grassFieldR2 = grassFieldR.clone();
+  grassFieldR2.translateX(-200);
+  scene.add(grassFieldR2);
+
+  var grassFieldR3 = grassFieldR.clone();
+  grassFieldR3.translateX(200);
+  scene.add(grassFieldR3);
+
+  var jewettLawnGeom = new THREE.PlaneGeometry(150,200);
+  var jewettLawn = new THREE.Mesh(jewettLawnGeom, grassMat);
+  jewettLawn.receiveShadow = true;
+  jewettLawn.rotateX(-Math.PI/2);
+  jewettLawn.rotateZ(-Math.PI/1.75);
+  jewettLawn.position.set(-220,-9.9,-100);
+  scene.add(jewettLawn);
+
+  var greenLawnGeom = new THREE.PlaneGeometry(45,120);
+  var greenLawn = new THREE.Mesh(greenLawnGeom, grassMat);
+  greenLawn.receiveShadow = true;
+  greenLawn.rotateX(-Math.PI/2);
+  greenLawn.rotateZ(-Math.PI/16);
+  greenLawn.position.set(230,-9.9,30);
+  scene.add(greenLawn);
+
+  var lamp1 = createLampPost();
+  lamp1.position.set(-30,-9.9,105);
+  scene.add(lamp1);
+
+  var lamp2 = createLampPost();
+  lamp2.position.set(140,-9.9,105);
+  scene.add(lamp2);
+
+  var lamp3 = createLampPost();
+  lamp3.position.set(80,-9.9,-160);
+  scene.add(lamp3);
+
+  var lamp4 = createLampPost();
+  lamp4.position.set(-65,-9.9,-100);
+  scene.add(lamp4);
+
+  var lamp5 = createLampPost();
+  lamp5.position.set(180,-9.9,-70);
+  scene.add(lamp5);
+
+  TW.render();
+}
+
+TW.loadTextures(["grass_text.jpeg"],
+            function (textures) {
+                setGrassMaterial(textures);
+            } );
+
+var cameraParams = {
+    near: 5,
+    far: 1000,
+    fov: 80,                 // degrees
+    aspectRatio: 800/500,   // from dimensions of the canvas, see CSS
+    atX: -200,
+    atY: 20, 
+    atZ: 100,
+    eyeX: -50,
+    eyeY: 10,
+    eyeZ: 100, 
+    upX: 0,
+    upY: 1,
+    upZ: 0
+};
+
+var animationState = {time: 0};
+
+//global variable to keep track of the number of times "n" was pressed
+var clicks = 0;
+
+function setupCamera (cameraParameters) {
+    // set up an abbreviation 
+    var cp = cameraParameters;
+    // create an initial camera with the desired shape
+    var camera = new THREE.PerspectiveCamera(cp.fov, cp.aspectRatio, cp.near, cp.far);
+    // set the camera location and orientation
+    camera.position.set(cp.eyeX, cp.eyeY, cp.eyeZ);
+    camera.up.set(cp.upX, cp.upY, cp.upZ);
+    camera.lookAt(new THREE.Vector3(cp.atX, cp.atY, cp.atZ));
+    return camera;
+}
+
+// var dot = new THREE.SphereGeometry(2,20);
+// var dotmat = new THREE.MeshBasicMaterial({color: 'yellow'});
+// var dotObj = new THREE.Mesh(dot, dotmat);
+// dotObj.position.set(-30,32,105);
+// scene.add(dotObj);
+
+//add lights to the scene
+var ambLight = new THREE.AmbientLight( 0x7e7f94 );
+ambLight.position.set(0,0,0);
+ambLight.castShadow = true;
+scene.add(ambLight);
+
+var spotLight = new THREE.SpotLight( 0xffffff, 1, 0, Math.PI/2, 0, 0 );
+spotLight.position.set(0, 500, 400);
+spotLight.target.position.set(0, 0, 0);
+spotLight.castShadow = true;
+scene.add(spotLight);
+scene.add(spotLight.target);
+
+var lamplight1 = new THREE.SpotLight( 0xffffff, 1, 0, Math.PI/4, 1, 0 );
+lamplight1.position.set(-30,32,105);
+lamplight1.target.position.set(-30,-10, 105);
+lamplight1.castShadow = true;
+// scene.add(lamplight1);
+// scene.add(lamplight1.target);
+
+var lamplight1point = new THREE.PointLight(0xffffff, 1, 100);
+lamplight1point.position.set(-30,32,105);
+// scene.add(lamplight1point);
+
+var lamplight2 = new THREE.SpotLight( 0xffffff, 1, 0, Math.PI/4, 1, 0 );
+lamplight2.position.set(140,32,105);
+lamplight2.target.position.set(140,-10, 105);
+lamplight2.castShadow = true;
+// scene.add(lamplight2);
+// scene.add(lamplight2.target);
+
+var lamplight2point = new THREE.PointLight(0xffffff, 1, 100);
+lamplight2point.position.set(140,32,105);
+// scene.add(lamplight2point);
+
+var lamplight3 = new THREE.SpotLight( 0xffffff, 1, 0, Math.PI/4, 1, 0 );
+lamplight3.position.set(80, 32, -160);
+lamplight3.target.position.set(80, -10, -160);
+lamplight3.castShadow = true;
+// scene.add(lamplight3);
+// scene.add(lamplight3.target);
+
+var lamplight3point = new THREE.PointLight(0xffffff, 1, 100);
+lamplight3point.position.set(80, 32, -160);
+// scene.add(lamplight3point);
+
+var lamplight4 = new THREE.SpotLight( 0xffffff, 1, 0, Math.PI/4, 1, 0 );
+lamplight4.position.set(-65, 32, -100);
+lamplight4.target.position.set(-65,-10, -100);
+lamplight4.castShadow = true;
+// scene.add(lamplight4);
+// scene.add(lamplight4.target);
+
+var lamplight4point = new THREE.PointLight(0xffffff, 1, 100);
+lamplight4point.position.set(-65, 32, -100);
+// scene.add(lamplight4point);
+
+var lamplight5 = new THREE.SpotLight( 0xffffff, 1, 0, Math.PI/4, 1, 0 );
+lamplight5.position.set(180,32,-70);
+lamplight5.target.position.set(180,32,-70);
+lamplight5.castShadow = true;
+// scene.add(lamplight5);
+// scene.add(lamplight5.target);
+
+var lamplight5point = new THREE.PointLight(0xffffff, 1, 100);
+lamplight5point.position.set(180,32,-70);
+// scene.add(lamplight5point);
+
+// create a renderer 
+var renderer = new THREE.WebGLRenderer();
+TW.mainInit(renderer,scene);
+
+//setup TW camera
+// TW.cameraSetup(renderer,scene,
+//                {minx: -200, maxx: 200,
+//                 miny: -200, maxy: 200,
+//                 minz: -200, maxz: 200});
+
+//set up initial camera and render the first scene
+var camera = setupCamera(cameraParams);
+scene.add(camera);
+
+//create renderer function
+function render() {
+    renderer.render(scene,camera);
+    renderer.shadowMap.enabled = true;
+}
+
+//call fxn to render initial frame
+render();
+
+green(renderer);
+jewett(renderer);
+pendletons(renderer);
+
+//add snow texture
+var loader = new THREE.TextureLoader();
+var snowMaterial;
+var clock;
+
+// add snow to the town with THREE.Points
+
+var snowGeometry = new THREE.Geometry();
+
+// create an array of 200 randomly positioned vertices
+for ( var i = 0; i < 2000; i ++ ) {
+    var snow = new THREE.Vector3();
+    snow.x = 550*(Math.random()-0.5);
+    snow.y = 10+(500*Math.random());
+    snow.z = 550*(Math.random()-0.5);                     
+    snowGeometry.vertices.push( snow );
+}
+
+// create cloud of points that can be added to the scene all at once
+var snowField = new THREE.Points( snowGeometry, snowMaterial );
+snowField.visible = false;
+                     
+scene.add( snowField );
+
+var posY = 100;
+
+// each time snowStorm() is called, cloud of points is moved down
+function snowStorm () {
+   if (snowField != null) {
+       scene.remove(snowField);
+   }
+   posY = posY - 1;
+   snowField = new THREE.Points( snowGeometry, snowMaterial );
+   snowField.position.set(0, posY, 0);
+   scene.add(snowField);
+   if (posY < -300) {
+       clearInterval(clock);
+       posY = 10;
+       clock = setInterval(snowStorm, 25);
+   } else {
+       TW.render();
+   }
+}
+
+// drop the cloud of points onto the town
+
+
+var rotSpeed = 0.005;
+
+//function to update the camera position/advance by one frame
+function updateState() {
+  cameraParams.eyeX = cameraParams.eyeX * Math.cos(rotSpeed) - cameraParams.eyeZ * Math.sin(rotSpeed);
+  cameraParams.eyeZ = cameraParams.eyeZ * Math.cos(rotSpeed) + cameraParams.eyeX * Math.sin(rotSpeed);
+  cameraParams.atY = 10;
+  cameraParams.atX = cameraParams.eyeX * Math.cos(rotSpeed-0.002) - cameraParams.eyeZ * Math.sin(rotSpeed-0.002);
+  cameraParams.atZ = cameraParams.eyeZ * Math.cos(rotSpeed-0.002) + cameraParams.eyeX * Math.sin(rotSpeed-0.002);
+  animationState.time +=1;
+  camera = setupCamera(cameraParams);
+}
+
+function oneStep() {
+  scene.remove(camera);
+  updateState();
+  render();
+}
+var animationId = null;
+
+function animate(timestamp) {
+  oneStep();
+  animationId = requestAnimationFrame(animate);
+  console.log("starting animation");
+}
+
+function stopAnimation() {
+  if(animationId != null) {
+    cancelAnimationFrame(animationId);
+    console.log("stopped animation");
+  }
+}
+
+TW.setKeyboardCallback("1",oneStep,"advance by one step");
+TW.setKeyboardCallback("g",animate,"go:  start animation");
+TW.setKeyboardCallback(" ",stopAnimation,"stop animation");
+
+
+function redoScene() {
+    if (snowField != null) {
+      clearInterval(clock);
+      scene.remove(snowField);
+    };
+    if (guiParams.Season == "Winter") {
+      snowField.visible = true;
+      loader.load("snowflake.png",
+            function (texture) {
+              snowMaterial = new THREE.PointsMaterial({
+                    map: texture,
+                    blending: THREE.AdditiveBlending,
+                    minFilter: THREE.NearestFilter,
+                    magFilter: THREE.MagFilter,
+                    size: 2})
+              clock = setInterval(snowStorm, 25);
+            } );
+    }
+    if (guiParams.Time == "Night") {
+      scene.background = new THREE.Color(0x162236);
+      scene.add(lamplight1);
+      scene.add(lamplight1.target);
+      scene.add(lamplight1point);
+      scene.add(lamplight2);
+      scene.add(lamplight2.target);
+      scene.add(lamplight2point);
+      scene.add(lamplight3);
+      scene.add(lamplight3.target);
+      scene.add(lamplight3point);
+      scene.add(lamplight4);
+      scene.add(lamplight4.target);
+      scene.add(lamplight4point);
+      scene.add(lamplight5);
+      scene.add(lamplight5.target);
+      scene.add(lamplight5point);
+      scene.remove(ambLight);
+      spotLight.intensity = 1.5;
+    }
+
+    if (guiParams.Time == "Day") {
+      scene.remove(lamplight1);
+      scene.remove(lamplight1.target);
+      scene.remove(lamplight1point);
+      scene.remove(lamplight2);
+      scene.remove(lamplight2.target);
+      scene.remove(lamplight2point);
+      scene.remove(lamplight3);
+      scene.remove(lamplight3.target);
+      scene.remove(lamplight3point);
+      scene.remove(lamplight4);
+      scene.remove(lamplight4.target);
+      scene.remove(lamplight4point);
+      scene.remove(lamplight5);
+      scene.remove(lamplight5.target);
+      scene.remove(lamplight5point);
+      scene.add(ambLight);
+      scene.background = new THREE.Color(0xccdee6);
+    }
+    TW.render();
+}
+
+var gui = new dat.GUI();
+gui.add(guiParams,"Season",["Summer","Winter"]).onChange(redoScene);
+gui.add(guiParams,"Time",["Day","Night"]).onChange(redoScene);
+
+</script>
+</p></div>
+
+<div class="academicQuad">
+<div class="container">
+  <div class="row">
+
+  <br>
+<p>
+  We constructed all geometries from scratch, including all the buildings and the iconic Wellesley lamps.
+  I built the entirety of Jewett and Green Hall, (the first and last buildings seen in one full rotation)
+  as well as all of the lamps, the overall positioning of the scene, the movement of the camera, and the
+  GUI controls that allow for changes in time of day and season. You can find our <a href="description_final.html">description here.</a></p>
+  </div>
+  </div>
+  <br><br>
+
+  <h2>The Iconic Wellesley Lamps</h2>
+  <p>The first thing I created for this project was the Wellesley lamp, which involved several unique geometries and complex curves.</p>
+  <div class="container lamp pill">
+    <div class="row">
+      <div class="col-sm">
+  <figure>
+    <img src="lamp_arial.png" alt="top view of lamp">
+    <figcaption>Here is an image of the lamp from aerial perspective.
+        I used hierarchical modeling in making several different meshes to 
+        create the actual lamp object, then another to create an object for the 
+        pole, and finally one for the base before constructing a lampost object that
+        contained all these objects.
+    </figcaption>
+  </figure>
+  </div>
+
+  <div class="col-sm">
+  <figure>
+    <img src="lamp_close.png" alt="top view of lamp">
+    <figcaption>This image shows a close-up of the details of the lamp that took the 
+      longest amount of time to perfect. I used several different objects to create the  
+      unique shape of the Wellesley lamp, and also used bezier curves to create the pieces
+      that adorn the sides of the lamp as well as the spiral pole.
+    </figcaption>
+  </figure>
+  </div>
+  </div>
+  </div>
+  <br>
+
+
+  <h2 class="jewett">Jewett</h2>
+  <p>Creating Jewett involved a combination of many different geometries and loops in order to create
+    the unique structure of the building and its staircases.
+  </p>
+  <div class="container jewett pill">
+    <div class="row">
+      <div class="col-sm">
+  <figure>
+    <img src="jewett.png" alt="font view of jewett">
+    <figcaption>Here is an image of our Jewett rendering from the front view.
+      It is mainly built out of several box geometries, and there are several
+      tube geometries to form the vents on the left building. The 'windows' are 
+      made out of tube geometries surrounding transparent plane geometries.
+    </figcaption>
+  </figure>
+  </div>
+
+  <div class="col-sm">
+  <figure>
+    <img src="jewett_close.png" alt="side view of jewett showcasing stairs">
+    <figcaption>The most challenging part of Jewett was definitely the lower
+      area with the staircases. I looped through and created a new stair, translating it a bit
+      more each time to get the effect I wanted. The inner walls of the staircases are trapezoidal in shape,
+      made by heavily compressing a cylinder geometry.
+    </figcaption>
+  </figure>
+  </div>
+</div>
+</div>
+<br>
+
+  <h2 class="green">Green Hall</h2>
+  <p>Green Hall was constructed similarly to Jewett, with more complex texture mapping on the tower portion.</p>
+  <div class="container green pill">
+    <div class="row">
+      <div class="col-sm">
+  <figure>
+    <img src="green_aerial.png" alt="aerial side view of green hall">
+    <figcaption>Here is an image of my interpretation of Green Hall from the top.
+      It is mainly built out of several barn-shaped geometries piercing through a central 
+      barn, with two other larger barns on each side. Galen Stone Tower is built out 
+      a box geometry with a boxy cylinder geometry attached to each corner.</figcaption>
+  </figure>
+  </div>
+
+  <div class="col-sm">
+  <figure>
+    <img src="green_door&tower.png" alt="side view of green hall with door and tower">
+    <figcaption>One of the more challenging parts of creating the geometry was 
+      texture mapping throughout. I had to carefully map specific parts of the barn
+      geometry to particular material indice in 
+      order to create the brick texture and the roof texture. I used a similar technique to
+      the stairs to create the windows with texture mapped plane geometries. I also texture mapped
+      the pattern of the tower onto each side of the box geometry, and added tubes to 
+      integrate the flat texture and the 3D rendering. The door is also texture mapped 
+      and I used blending to achieve the look.
+    </figcaption>
+  </figure>
+  </div>
+  </div>
+  </div>
+  <br>
+
+    <h2>Final Additions</h2>
+    <p>The final thing I added was GUI controls for a more interactive experience.</p>
+    <div class="container gui pill">
+      <div class="row">
+        <div class="col-sm">
+    <figure>
+      <img src="DaySnow.png" alt="day view with snow">
+      <figcaption>I used a loop with a timeout to create 
+        a snowfall effect. I had to modify it slightly to fit the size of our scene 
+        and also generate natural-looking snowfalls repeatedly.
+      </figcaption>
+    </figure>
+    </div>
+  
+    <div class="col-sm">
+      <figure>
+        <img src="Night.png" alt="night view">
+        <figcaption>Next I created a nighttime version, which changed the lighting and colors.
+          In the night view, the background scene color is changed to be a night sky color, and 
+          the ambient light is removed. The spotlight is turned up slightly so the buildings are
+          visible, and the lamps are all turned "on." 
+        </figcaption>
+      </figure>
+      </div>
+
+      <div class="col-sm">
+        <figure>
+          <img src="NightSnow.png" alt="night view with snow">
+          <figcaption>This image combines all the new features, the night view with the snow on.
+            Please scroll up to our demo above to see the GUI in action!
+          </figcaption>
+        </figure>
+        </div>
+      </div>
+      </div>
+
+</div>
+</div>
+
+
+
+<footer class="foot-nav">
+  <nav class="navbar navbar-expand-sm">
+  <ul class="navbar-nav">
+      <li class="nav-item">
+          <a class="nav-link" href="mailto:tg2@wellesley.edu">Email</a>
+      <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/toshali-goel-a233b91a5/">LinkedIn</a>
+      </ul>
+      
+      <li class="nav-item nav-link ml-auto">
+          &#9825; Designed and Coded by Toshali Goel &#9825; </li>
+      
+  </nav>
+</footer>
+
+</body>
+</html>

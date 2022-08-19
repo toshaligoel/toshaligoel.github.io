@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>CS307 Final Project Alpha Description</title>
+<meta name="description" content="Our first page">
+<meta name="keywords" content="html tutorial template">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css"> 
+    <link rel="stylesheet" href="307style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>CS307 Final Project: Alpha Version</h1>
+    <h2>Toshali Goel and Audrey Ballarin</h2>
+    <br>
+    <br>
+
+    <p>We built a graphics rendering of the Academic Quad for our final project!
+        We built each building in its own JS file, along with a separate file for the lamps,
+        and then loaded all the files into the <a href="project.html">demo</a>.
+    </p>
+
+    <h2 class="tangled">Initial Plan</h2>
+<p>We were initially planning to construct an animated scene, inspired by the following
+  scene from the Disney film <i>Tangled.</i> <p> </p>
+
+  <div class="container tangled">
+    <div class="row">
+      <div class="col-sm">
+  <img src="https://wallpaperaccess.com/full/28064.jpg" width="50%">
+</div>
+<div class="col-sm">
+  <p>
+  We wanted to do a Wellesley take on the scene, taking place on Lake Waban with
+  our Wellesley lamps floating around the scene instead of the paper lanterns used in
+  the film. We were hoping to create both an animation (which runs in a standard fashion when the user presses space)
+  or something of that sort, as well as an interactive element for users, where they might be able 
+  to click on a particular lamp/lantern and send it floating in a random direction.</p>
+
+  <p>However, after sitting with the idea for a bit, we realized it would be a bit
+      difficult to implement and also that it might look odd, since we wanted to use 
+      texture mapping to recreate campus elements like the Lake but then wouldn't be able 
+      to animate it with natural looking movement.
+  </p>
+  </div>
+  <br>
+    <div class="row">
+
+  <div class="col-sm">
+  <h3>Change in Direction</h3>
+  <p>We had built the Wellesley lamp for our HWK6 assignment, and decided we could try
+      to recreate a section of the campus and do a virtual "tour" of it.
+  </p>
+
+  <p>We eventually settled on the Academic Quad because of its unique contained
+      nature, and also because of the variation in gothic and modern styles of architecture - 
+      which would allow us to explore our skills in object building and show off
+      all the skills we learned in CS 307!
+  </p>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <br>
+  <h2>The Iconic Wellesley Lamps</h2>
+  <p>The first thing we created for this project was the Wellesley lamp.</p>
+  <div class="container lamp">
+    <div class="row">
+      <div class="col-sm">
+  <figure>
+    <img src="lamp_arial.png" alt="top view of lamp">
+    <figcaption>Here is an image of the lamp from aerial perspective.
+        We used hierarchical modeling in making several different meshes to 
+        create the actual lamp object, then another to create an object for the 
+        pole, and finally one for the base before constructing a lampost object that
+        contained all these objects.
+    </figcaption>
+  </figure>
+  </div>
+
+  <div class="col-sm">
+  <figure>
+    <img src="lamp_close.png" alt="top view of lamp">
+    <figcaption>This image shows a close-up of the details of the lamp that took the 
+      longest amount of time to perfect. We used several different objects to create the  
+      unique shape of the Wellesley lamp, and also used bezier curves to create the pieces
+      that adorn the sides of the lamp as well as the spiral pole.
+    </figcaption>
+  </figure>
+  </div>
+  </div>
+  </div>
+  <br>
+
+
+  <h2 class="jewett">Jewett</h2>
+  <p>Next, we created Jewett.</p>
+  <div class="container jewett">
+    <div class="row">
+      <div class="col-sm">
+  <figure>
+    <img src="jewett.png" alt="font view of jewett">
+    <figcaption>Here is an image of our Jewett rendering from the front view.
+      It is mainly built out of several box geometries, and there are several
+      tube geometries to form the vents on the left building. The 'windows' are 
+      made out of tube geometries surrounding transparent plane geometries.
+    </figcaption>
+  </figure>
+  </div>
+
+  <div class="col-sm">
+  <figure>
+    <img src="jewett_close.png" alt="side view of jewett showcasing stairs">
+    <figcaption>The most challenging part of Jewett was definitely the lower
+      area with the staircases. We used the technique we learned in creating 
+      fences, looping through and creating a new stair and translating it a bit
+      more each time. The inner walls of the staircases are trapezoidal in shape,
+      made by heavily compressing a cylinder geometry.
+    </figcaption>
+  </figure>
+  </div>
+</div>
+</div>
+<br>
+
+  <h2 class="green">Green Hall</h2>
+  <p>Next, we worked on Green Hall.</p>
+  <div class="container green">
+    <div class="row">
+      <div class="col-sm">
+  <figure>
+    <img src="green_aerial.png" alt="aerial side view of green hall">
+    <figcaption>Here is an image of our interpretation of Green Hall from the top.
+      It is mainly built out of several barn geometries piercing through a central 
+      barn, with two other larger barns on each side. Galen Stone Tower is built out 
+      a box geometry with a boxy cylinder geometry attached to each corner.</figcaption>
+  </figure>
+  </div>
+
+  <div class="col-sm">
+  <figure>
+    <img src="green_door&tower.png" alt="side view of green hall with door and tower">
+    <figcaption>One of the more challenging parts of creating the geometry was 
+      texture mapping throughout. We had to carefully map specific parts of the barn
+      geometry to particular material indices, similar to how we completed HWK5, in 
+      order to create the brick texture and the roof texture. We used a similar technique to
+      the stairs to create the windows with texture mapped plane geometries. We also texture mapped
+      the pattern of the tower onto each side of the box geometry, and added tubes to 
+      integrate the flat texture and the 3D rendering. The door is also texture mapped 
+      and we used blending to achieve the look.
+    </figcaption>
+  </figure>
+  </div>
+  </div>
+  </div>
+  <br>
+
+  <h2>Pendleton East & West</h2>
+  <p>Next, we worked on Pendleton East and West.</p>
+  <div class="container pendleton">
+    <div class="row">
+      <div class="col-sm">
+  <figure>
+    <img src="PNE.PNG" alt="front view of pendleton e & w">
+    <figcaption>This is a front view of Pendleton East and Pendleton West. 
+      Pendleton East is made of many BarnGeometry meshes of varying sizes. 
+      There are also BoxGeometry meshes for details around the border and in 
+      front the main entrance, as well as PlaneGeometry meshes for the windows 
+      and door. All the geometries have been texture mapped. 
+    </figcaption>
+  </figure>
+  </div>
+
+  <div class="col-sm">
+    <figure>
+      <img src="PNW3.PNG" alt="focus image on pendleton west">
+      <figcaption>Pendleton West, which is more modern in design, is made 
+        primarily of BoxGeometry meshes. The rightmost section of Pendleton West,
+         which connects directly to Pendleton East, contains many box geometries 
+         stacked together to form the inner "cave" where the entrance is located.
+          There is even a small bench for sitting! The modern windows on the 
+          newer sections of PNW were created by looping, translating, and adding
+           "window bars" (BoxGeometry) positioned in front of a "glass" plane. 
+      </figcaption>
+    </figure>
+    </div>
+    </div>
+    </div>
+
+    <h2>Final Additions</h2>
+    <p>The final thing we added was GUI controls for a more interactive experience.</p>
+    <div class="container gui">
+      <div class="row">
+        <div class="col-sm">
+    <figure>
+      <img src="DaySnow.png" alt="day view with snow">
+      <figcaption>We used a technique very similar to the classwork in order to create 
+        a snowfall effect. We had to modify it slightly to fit the size of our scene 
+        and also generate natural-looking snowfalls repeatedly.
+      </figcaption>
+    </figure>
+    </div>
+  
+    <div class="col-sm">
+      <figure>
+        <img src="Night.png" alt="night view">
+        <figcaption>Next we created a nighttime version, which changed the lighting and colors.
+          In the night view, the background scene color is changed to be a night sky color, and 
+          the ambient light is removed. The spotlight is turned up slightly so the buildings are 
+        </figcaption>
+      </figure>
+      </div>
+
+      <div class="col-sm">
+        <figure>
+          <img src="NightSnow.png" alt="night view with snow">
+          <figcaption>This image combines all the new features, the night view with the snow on.
+            Please navigate to our demo to see the GUI in action!
+          </figcaption>
+        </figure>
+        </div>
+      </div>
+      </div>
+
+
+</body>
+</html>
