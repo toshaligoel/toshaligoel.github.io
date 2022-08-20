@@ -50,360 +50,66 @@
 <div class="container">
     <h1>&#128209; Projects&#128241;</h1><br>
     <!--<h1>&#128209; Projects&#128241;</h1>-->
-    
-<h2 id="budlab">Budlab: Application Design for Student Productivity</h2>
-    
-    <br>
-    <p class="center"><em>We interviewed communities impacted by COVID-19, which helped us discover our user need: dwindling student productivity in the face of pandemic WFH. We designed an application that would allow students to work with their peers either synchronously or asynchronously, tracking their progress and finding study buddies even in the remote learning environment.</em></p> <br><br>
-    <div class="container flex-column col-lg-7">
-    <img src="images/stacked_budlab.png" class="wow fadeInUp box" width="100%">
+
+    <div id="cards" class="container" style="padding:0 6rem;">
+        <div class="row wow fadeInUp">
+        <div class="col">
+        <a href="coursematch.html"><div class="pill" style="margin: 0 1rem">
+            <img class="card-img-top" src="images/signup.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Course Matching: Full-Stack App</h5>
+              <p class="card-text">Course registration for CS majors at Wellesley is notoriously
+                difficult for all parties involved. I worked with a team to design and implement 
+                a web application to help students and professors with the process!
+              </p>
+            </div>
+          </div></a>
         </div>
-    <br>
+    
+        <div class="col">
+            <a href="campustour.html"><div class="pill" style="margin: 0 1rem">
+                <img class="card-img-top" src="images/cover_quad.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Academic Quad: CG & Animation</h5>
+                  <p class="card-text">I worked with a partner to create a 3D rendering of the
+                    Academic Quad on campus, modeled after the actual proportions of our favorite spot on campus and 
+                    complete with seasonal changes and animated camera movement!
+                  </p>
+                </div>
+              </div></a>
+            </div>
 
-        <p class="fadein"> I took a <b>Human-Computer Interaction</b> class the summer before my junior year, in which our task was to design an application that would help people affected by the pandemic and the sudden switch to virtual/remote life. I worked with a partner to create Budlab, an application design that attempts to help college students studying remotely during the pandemic to boost academic drive by connecting and collaborating with peers and classmates in the format best suited to them - whether that be synchronous, asynchronous, or a less involved form of teamwork. </p>
-    
-    <p class="fadein">After conducting several user research interviews amongst our target population, we discovered that college students felt burnt out and unmotivated, both in their social and academic lives. We decided to try and come up with a solution to this all too common problem, and put together an app that would allow people to form meaningful connections and work together - even in the remote environment.</p>
-    <br>
-    
-    <h3>User Analysis</h3><p></p>
-    <div class="pill wow fadeInUp box">
-    <img src="empathy_map_1.png" width="49.75%">
-    <img src="empathy_map_2.png" width="49.5%">
-        <p></p>
-    
-    <p>Above are two <b>empathy maps</b> summarizing the findings from 2 user interviews I conducted. Some of our key takeaways from this stage of the project were: </p>
-    
-    <ul class='lists'>
-                                        <li class='bullets'>Interviewees have difficulty maintaining academic drive, as they are unable to see peers working and feel motivated</li>
-                                        <li class='bullets'>Interviewees have difficulty maintaining long-term connections with remotely-made friends, as they often lose touch once the semester/school period ends.</li>
-                                        <li class='bullets'>Interviewees struggled with procrastination as they had more time to do less work.</li>
-                                    </ul>
-        </div>
-    <br><br>
-    
-    <h3>Personas</h3><p></p>
-    <div class="pill wow fadeInUp box">
-    <img src="courtney.png" width="49%">
-        <img src="lydia.png" width="50%">
-        
-     <p></p>
-    <p>Based on the information we collected from our user interviews, we created two distinct <b>personas</b> to guide our design process. (Of the two, I was responsible for the Courtney persona.) </p>
-        </div>
-    <br><br>
-    
-    <h3>Ideation</h3><p></p>
-    <div class="pill wow fadeInUp box">
-    <img src="prelim_design.png" width="100%">
-        
-    <p></p>
-    <p>Above is the <b>preliminary, low-fidelity app design</b> that I came up with. I focused on the academic improvements our application could make, rather than the social ones that were also pointed out in our user research. I also explicitly focused on asynchronous collaboration, as most of my interviewees seemed to favor the flexibility it provided.</p> 
-        <p>I came up with the idea to use bubbles to visualize progress on assignments - each student in the collaboration group would have a uniquely colored bubble, the size of which would correspond to their progress percentage. The entire group would be represented by a group percentage bubble, the average of all collaborators' progress and the median color of all participants. In a built-out, functional prototype, all bubbles would float and the bubbles with higher percentages would float above others to further signify their meaning and purpose. </p>
-     </div>
-    
-    
-    <div class="row justify-content-center mt-5">
-    <div class="col-lg-7 fadeInUp" style="margin-top:45px">
-    <h3>User Feedback Wireframe</h3><br><p class="fadeInUp">We analyzed the strengths and weaknesses of this design:</p>
-    <div class="row justify-content-center mt-5">
-    <div class="col-lg-6"><p class="mb-4">Strengths</p>
-        <ul class="lists">
-            <li class="bullets">Built out asynchronous collaboration</li>
-            <li class="bullets">Good for students who are focused on academic motivation</li>
-        </ul>
-    </div>
-    <div class="col-lg-6"><p class="mb-4">Weaknesses</p>
-        <ul class="lists">
-            <li class="bullets">No in-app features for synchronous collaboration, relies on assumption that students have other means for that</li>
-            <li class="bullets">Not as focused on socialization</li>
-        </ul>
-        <br><br>
-    </div>
-    
-                                        </div><p class="mb-4">Based on user feedback as well as our own critiques, we decided to move further with a design that would also allow for synchronous collaboration, and would have options for social engagement and interaction. </p><p class="mb-4">To the right is a <b>wireframe prototype</b> of our next design iteration, which included both synchronous and asynchronous collaboration. It also added several "directories" to allow students to meet and work with students across the entire platform rather than just those they shared classes our academic interests with. I also added a feature to allow users to see the activity and progress of their friends on the app, which would hopefully help students who felt like they wanted to be around other working students but were uncomfortable reaching out/initiating a connection remotely.</p>
-                                            
-                                            </div>
-                                            <div class="col-lg-4 pill wow fadeInUp box" style="margin:45px"><video autoplay muted loop class="myVideo">
-                    <source src="demo.mov" type="video/MP4" width="10%">
-                </video>
-                                            </div>
-        <br>
-                                        </div>
-    <br>
-
-    <h3>Alpha Prototype</h3>
-     <div class="pill wow fadeInUp box">
-                                        <div>
-                                            <img class="album img-fluid rounded" src="alpha/alpha1.png" alt="..." width="24%" style="margin:0.21%">  
-                                            <img class="album img-fluid rounded" src="alpha/alpha2.png" alt="..." width="24.5%" style="margin:0.21%"> 
-                                            <img class="album img-fluid rounded" src="alpha/alpha3.png" alt="..." width="24%" style="margin:0.21%"> 
-                                            <img class="album img-fluid rounded" src="alpha/alpha4.png" alt="..." width="24.2%" style="margin:0.21%"> 
-                                        </div>
-         <br>
-         <p><strong>From left to right:</strong> Asynchronous collaboration setup screen; Dashboard screen; Asynchronous collaboration setup screen part two; Friends Directory.</p>
-
-                                    </div>
-
-    <div class="row justify-content-center mt-5">
-                                            
-                                            <div class="col-lg-4 pill wow fadeInUp box" style="margin:45px" "margin-top: 0"><video autoplay muted loop class="myVideo">
-                    <source src="final_proto_1080.mov" type="video/MP4" width="10%">
-                </video>
-                                            </div>
-        <div class="col-lg-7 wow fadeInUp box" style="margin-top:45px">
-            <h3>User Feedback and Prototype Iterations</h3><p></p> <p class="mb-4">Above are some of the key screens from the <b>alpha prototype</b> we created in Figma, taking user feedback on our wireframe from peers into account. Some of the biggest changes we made to our application design in this stage were: combining the general and friends directory under a common "people" directory, splitting the asynchronous collaboration setup page into 2 different screens to avoid overwhelming the user, and a color scheme and consistent font style. We chose colors that seemed calming and soft to keep from distracting students, but also fun and energizing to increase student motivation. We also chose a universally accessible and easy to read font, Roboto, to use throughout the app. </p><br><br><h3>Final Beta Prototype</h3><p></p><p class="mb-4">To the left is the <b>final, high-fidelity Figma prototype</b> that we created. I was primarily responsible for the design of all the directories, the asynchronous screens, and the messaging screens. After receiving user feedback on the initially confusing nature of the app's navigation, this final prorotype contains a consistent header that allows the user to reach the expanded side menu from any screen they reach, as well as to go back to their previous screen. This proved highly helpful in allowing users to recover swiftly from any errors they made while using the app, and helped to streamline our app's internal navigation.</p>
-                                            
-                                            </div>
-    <br><br>
-        
-    <h2 id="chatroom">Computer Networks: Chatroom Application</h2><br>
-    <p class="center"><em>I worked in a team to design a client-server based chatroom application using Flask, which would allow users to chat in groups of their choosing.</em></p><br><br>
-    
-        <img src="images/chatroom_index.png" width="100%">
-        <br><br>
-
-        <div class="fadeInUp">
-        <h3>Research, Ideation, and Structural Design</h3>
-        <p></p>
-            <p>We built this application for a course focused on computer networks, and the networking applications covered in the course were run via command line. It was important to us to challenge ourselves to build something more real-world, and so we took on the task of developing a web component alongside the networking client-server code.</p>
-            
-            <h3>Interface Design and Execution</h3><p></p>
-
-            
-            <div class="pill wow fadeInUp box">
-                                    <div>
-                                        <img class="album img-fluid rounded" src="images/chatroom_loggedin.png">  
-                                    </div>
-         <br>
-         <p><strong>Landing page for a logged in user:  </strong>displays a personalized greeting and list of all rooms the user is a part of.</p>
-                
             </div><br><br>
-            
-             <p>I personally handled all the HTML and Jinja2, as well as the styling of the application in CSS. I also helped the team with several of our Flask routes and setting up our databases in MongoDB. </p><br>
-                
-                                    <div class="pill wow fadeInUp box"><video autoplay muted loop class="myVideo">
-                    <source src="images/chatroom_sendmsg.mov" type="video/MP4" width="500%">
-                </video>
-                <p><strong>Inside a group chatroom: </strong>displays a list of previously sent messages with sender and sendtime, and gives the user space to send new messages, edit the room, or return to Home.</p>
-                                            </div>
-         <br><br><br>
-            
-        <div class='container'>
-            <div class='row'>
-            
-        <div class="col-lg-3">
-            <p></p>
-        <p>The user interface design was modeled after old-school chatrooms, with typically simple UIs — often presented in a popular dark theme — that spanned few pages. I chose the color scheme, font family, and made all other style decisions in accordance with accessible design practices.</p><br>
-            
-        <p>Our Flask application contains several Jinja2 templates in the front-end, as well as client code that we decided to execute in JavaScript - specifically, Ajax, in order to take advantage of its real-time abilities.</p><br>
-        
-        <p>The video on the right provides a quick walkthrough of our entire application.</p></div>
-            
-            <div class="col-lg-9 pill wow fadeInUp box"><video autoplay muted loop class="scroll">
-                    <source src="images/chatroom_walkthru.mp4" type="video/MP4" width="100%">
-                </video>
-                
-                <p> This demo follows first the perspective of a returning user, then a new user, and finally shows an interaction between the new and returning user.</p>
-                                            </div>
+        <div class="row wow fadeInUp">
 
-            </div>
+            <div class="col">
+                <a href="budlab.html"><div class="pill" style="margin: 0 1rem">
+                    <img class="card-img-top" src="images/stacked_budlab.png" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Budlab: Mobile App Design</h5>
+                      <p class="card-text">Student productivity and socialization took a severe hit during the pandemic.
+                        We designed an app that would allow students to work with their peers and find study buddies, even
+                        in remote learning!
+                      </p>
+                    </div>
+                  </div></a>
+                </div>
+
+                <div class="col">
+                    <a href="chatroom.html"><div class="pill" style="margin: 0 1rem">
+                        <img class="card-img-top" src="images/chatroom_card.png" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">Chatrooms: Client-Server Architecture in Networks</h5>
+                          <p class="card-text">I worked with a team to design and implement a client-server
+                            based chatroom application that would allow users to chat with any other members 
+                            in the system in groups of their choosing.
+                          </p>
+                        </div>
+                      </div></a>
+                    </div>
     
-    </div>
-        </div>
-        </div>
-    <br><br>
-    
-    <h2 id="coursematch">Working in the Full-Stack: Course Matching Application</h2>
-    <br>
-    <p class="center"><em>I worked in a team to design and implement an application that would recommend CS elective courses to students based on various factors such as class year, major, etc.
-        I was part of the sub-team that worked on managing the databases, designing the front-end, and implementing the functionality in the back-end. Our other sub-team primarily
-        focused on designing and implementing the algorithm.
-    </em></p>
-    
-    <br>
-    <div class="center">
-    <img src="images/304_signup.png" width="100%">
-</div>
-    <br><br>
-
-    <h3>Structural Design</h3><p></p>
-    <div class="row">
-    <div class="col-lg-6" style="margin-top:2%">
-        <img src="images/304_entitymap.jpg" width="100%">
-</div>
-<div class="col-lg-6">
-<p style="margin-bottom:2%">One of the first things we worked on was an entity map of the database structure
-    of our application. We laid out the relationships between the various types of users
-    we wanted to accomodate, as well as the information we would gather from each.
-</p>
-<div class="pill wow fadeInUp box">
-    <img src="images/304_erdiagram.png" width="100%">
-    <p>The above diagram is the final structure we built our application based on, and the diagram to the left
-        is a preliminary sketch we did of the data.
-    </p>
-</div>
-</div>
-</div>
-<br><br>
-
-
-    <h3>Low-Fidelity Prototyping</h3><p></p>
-    <div class="pill wow fadeInUp box">
-        <div class="row">
-        <div class="col-lg-8">
-            <img src="images/304_prof-courses.jpg" width="100%">
-        </div>
-        <div class='col-lg-4'>
-            <img src="images/304_roster.jpg" width="100%">
-        </div>
-            <p><b>From left to right: </b>sketches of the course ranking form page, 
-                the professor dashboard and professor course view page, and the course roster page.
-            </p>
         </div>
     </div>
-    <br>
-
-    <br>
-    <div class="row">
-    <div class="col-lg-3">
-        <p>I designed and implemented the front-end of the application, and decided to start with
-            some paper prototypes to give myself a better understanding of how many pages I would
-            be creating, what kinds of styling I could use to unify them, and what the inheritance
-            relationships between the templates would look like. 
-        </p>
-        <p>The picture to the right is my rough mockup of the course roster page (top left), the 
-            signup landing page (bottom left), a student dashboard (top right), and the form for students to enter their information & preferences (bottom right).
-            These were the first pages I sketched out, and they underwent some change before I went into the 
-            coding process - for example, the course ranking form was later combined with the preferences pages.
-        </p>
-    </div>
-    <div class="col-lg-9">
-        <img src="images/304_welcome-students.jpg" width="100%">
-    </div>
-    </div>
-    <p></p>
-    <br><br>
-
-
-    <h3>High-Fidelity Prototyping</h3><p></p>
-    <div class="pill wow fadeInUp box">
-    <div class="row">
-        <div class="col-lg-6">
-            <img src="images/signup.png" width="100%">
-        </div>
-        <div class="col-lg-6">
-            <img src="images/roster.png" width="100%">
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-lg-9">
-                <video autoplay muted loop class="scroll">
-                    <source src="images/304_studentscroll.mov" type="video/MP4">
-                </video>
-        </div>
-        <div class="col-lg-3">
-            <p><b>Top: </b>the final prototypes for the signup and course roster pages. I
-            converted my initial designs to Figma prototypes, then created templates using HTML and
-            Jinja2 as well as consistent CSS styling for all templates. As we were told this project
-            could potentially be used by the college in the future, I chose a simple, clean style 
-            that matched the college's branding.</p>
-            <p><b>Left: </b>the final prototype for a sample course page, containing a course description and an
-                embedded syllabus.</p>
-        </div>
-    </div>
-    </div>
-    <br><br>
-
-    <h3>Building Out the Backend</h3><p></p>
-    <p class="center">I worked on building several features in the application, including the dynamically updated course roster, 
-        the forms for professors and students to submit courses and preferences respectively, the dynamically updated
-        dashboards for all users, and file upload. I'm currently working on adding search and improving the update functionality.
-    </p>
-    <p></p><br>
-    <div class="row">
-        <div class="col-lg-9">
-            <video autoplay muted loop class="scroll">
-                <source src="images/304_addcourse.mov" type="video/MP4">
-            </video>
-        </div>
-        <div class="col-lg-3">
-            <h4>Adding a New Course</h4><br>
-            <p><b>Left: </b>From the professor persepctive, the option to add a course exists.
-            The clip shows a professor entering a course titled "Databases with Web Interfaces," 
-            which then redirects to the newly created page.</p>
-            <p>There are no students matched to the course yet, as the algorithm has not yet been run.
-
-            </p>
-        </div>
-    </div>
-    <br>
-    <div class="pill wow fadeInUp box">
-    <div class="row">
-            <div class="col-lg-3">
-                <h4>Adding Student Preferences</h4><br>
-                <p><b>Right: </b>From the student perspective. A student fills out their preferences
-                regarding course ranks as well as some information about themselves, the courses they rank
-                as their top 5 appearing on their dashboard in order for easy access.</p>
-                <p>Each of the cards on their dashboard links to the designated course page.</p>
-            </div>
-        <div class="col-lg-9">
-            <video autoplay muted loop class="scroll">
-                <source src="images/304_studentprefs.mp4" type="video/MP4">
-            </video>
-        </div>
-    </div>
-    </div>
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-lg-9">
-            <video autoplay muted loop class="scroll">
-                <source src="images/304_algorithm.mov" type="video/MP4">
-            </video>
-        </div>
-        <div class="col-lg-3">
-            <h4>Running the Algorithm</h4><br>
-            <p><b>Left: </b>First, from the professor perspective, the algorithm is run (which only professors
-            have access to) and students are assigned to various courses according to their class
-            years, preferences, etc. From the student perspective, the course they were assigned to
-            can now be seen on their dashboard under "Your Matches."</p>
-            <p>Upon clicking upon their match, it can be seen that students do not have access 
-                to the information professors do; for example, who else has been matched to that course.
-            </p>
-        </div>
-</div>
-<br><br>
-
-    
-    <h2 id="nextdoor">Unsolicited Redesign: Nextdoor</h2><br>
-    <p class="center"><em>As part of a recreational challenge to redesign an application or website, I reimagined the Nextdoor website. I used iterative design practices to evaluate the website, and added graphics and colors for increased consistency, accessibility, and clarity.</em></p><br><br>
-    
-    <div class="pill wow fadeInUp box" style="margin-bottom:3%">
-        <img src="images/nextdoor_redesign.PNG" width="100%">
-   
-        
-        </div>
-
-        <div class="fadeInUp">
-        <h3>Key Changes and Design Rationale:</h3>
-        <p></p>
-        <ul>
-        <li>
-        Set background of navigation bar to a different color to aid vision-impaired and elder users, and added a "Sign up" button to appeal to first time users.</li>
-    <li>Removed initial background image and sign-up form to allow users to perceive information more clearly, increase accessibility for vision-impaired and elder users, and avoid overwhelming the user.
-        </li>
-        <li>
-        Replaced header with image of the application in action to clarify purpose of the service, and replaced sign-up form with a button to redirect to new page.</li>
-        <li>
-            Added bold section of text with information from the service's mission statement, to clarify the site's goals for users.
-        </li>
-        <li>
-        Heavily reduced number of available links from the footer to their main sections in order to avoid confusing/overwhelming the user, and added social media handles alongside the download icons in the original design.</li>
-        <li>
-        Implemented a consistent color scheme across that utilized colors from the company's logo.</li>
-    </ul>
-            </div>
-    
     </div>
     <br><br>
 
