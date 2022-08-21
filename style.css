@@ -197,19 +197,19 @@ footer {
     background-color: rgba(39, 30, 52, .3);
 }
 
-#code {
+#design {
   background-image: linear-gradient(to right, rgba(255,255,255,0) 50%, #c2c2ff 50%);
 }
 
-#design {
+#paint {
     background-image: linear-gradient(to right, rgba(255,255,255,0) 50%, #FFCAAD 50%);
 }
 
-#paint {
+#write {
     background-image: linear-gradient(to right, rgba(255,255,255,0) 50%, #FFADBB 50%);
 }
     
-#design, #paint, #code {
+#design, #paint, #write {
   background-position: -0% 0;
   background-size: 200% auto;
   line-height: 1.15em;
@@ -218,7 +218,7 @@ footer {
     text-shadow: #271e34 0px 0px 1px;
 }
 
-#design:hover, #paint:hover, #code:hover {
+#design:hover, #paint:hover, #write:hover {
     background-position: -99.99% 0;
     /*color: #271e34;*/
     text-shadow: #271e34 0px 0px 5px;
