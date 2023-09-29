@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css"> 
+      
+      <link rel="stylesheet" href="style.css">
+      <link rel="icon" href="images/favicon.ico">
+    <title>Amazon Reviews</title>
+</head>
+    
+    <nav class="head-nav navbar navbar-expand-sm">
+  
+        <a class="navbar-brand" id="logo" href="index.html"><img src="images/logo_circle.png" alt="..." width="6.5%"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">HOME</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="projects.html">PROJECTS<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="research.html">RESEARCH</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Artwork
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="fine_art.html">Fine Art</a>
+          <a class="dropdown-item" href="digital_art.html">Digital Art</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ResumeTGMSCS.pdf">RESUME</a>
+      </li>
+    </ul>
+  </div>
+    </nav>
+    
+    
+<body>
+
+<div class="container">
+    <br>
+<h1>Amazon Review Helpfulness</h1>
+
+<h2>Logistic Regression and Bag of Words</h2><br>
+    <p class="center"><em>I worked with a partner to create a logistic regression classifier to be able to discern a "helpful" review from an "unhelpful" one, 
+        as determined by user helpfulness upvotes. We then used the bag of words approach to determine which words were most and least
+        indicative of helpfulness in a review.
+    </em></p><br><br>
+    
+        <img src="images/bow_code.png" width="100%">
+        <br><br>
+
+        <div class="fadeInUp">
+        <h3>Background and Literature</h3>
+        <p></p>
+<p>In our pursuit to understand the intricacies of Amazon.com reviews and their helpfulness, we read several other papers on the topic by researchers spanning many different approaches and time periods.</p>            <br>
+            <div class="pill wow fadeInUp box container researchCit">
+            <br>
+<p>In 2009, Mizil et al. wrote a paper entitled <a href="https://dl.acm.org/doi/abs/10.1145/1526709.1526729">“How Opinions are Received by Online Communities: A Case Study on Amazon.com Helpfulness Votes,”</a> which considered four different hypotheses for predicting review helpfulness and constructed a framework to determine their validity. 
+    One was the brilliant-but-cruel hypothesis predicts that negative reviewers are perceived as more intelligent and competent than positive reviewers and therefore negative reviews are overall perceived as being more helpful.
+    The researchers created a mathematical model based on the notions behind their hypotheses and rejected the brilliant-but-cruel hypothesis based on their findings.
+</p>
+<p>In 2013, Skalicky wrote a paper entitled <a href="https://doi.org/10.1016/j.dcm.2013.04.001">“Was this analysis helpful? A genre analysis of the Amazon.com discourse community and its “most helpful” product reviews”</a> in which the researcher conducted a study of the rhetorical patterns in helpful and unhelpful reviews. They found a difference in the patterns, and argued that overall, reviews containing experience-based information, as in rhetoric that expanded on a user’s own experiences with the product or service, were more likely to be evaluated as helpful. This is in contrast to reviews containing search-based or quasi-advertisement rhetoric, such as information about the product or service that could be found online or overly positive feedback that invokes the rhetoric of an advertisement, which were less likely to be found helpful. 
+</p>
+<p>In 2019, Du et al. conducted a study called <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0226902">“Feature selection for helpfulness prediction of online product reviews: An empirical study”</a> in which they combined all the most popular methods of featurizing the data from various studies involving Amazon.com reviews — for example, number of words, unigrams, etc. — and tested the classification accuracy across all methods. The ‘semantics’ category of featurization was overall, the highest, with specifically unigrams — commonly analyzed via the Bag of Words approach — setting the baseline in all domains. All other semantic analyses variably approached slightly lower or occasionally higher classification accuracy, but unigrams were relatively consistent overall.</p>
+
+<p>Our literature review helped us to identify approaches we wanted to take for our study, as well as patterns in the results we were interested in looking out for. For example, despite the 2009 study’s rejection of the brilliant-but-cruel hypothesis, the 2013 rhetorical study found that ‘advertisement’ and overly positive rhetoric was likely not seen as helpful — which prompted us to question whether the idea of negative reviews being seen as more helpful overall has changed with time, especially given the exponential growth of Amazon and Internet use in general. The 2019 study also helped lead us to choose the Bag of Words approach with unigrams, based on their success and consistency in Du et al.’s analysis.</p>
+            </p>
+            </div><p></p>
+            <h3>Data Collection and Model Training</h3><p></p>
+
+            
+            <div class="pill wow fadeInUp box">
+                                    <div>
+                                        <img class="album img-fluid rounded" src="images/review_example.png">  
+                                    </div>
+         <br>
+<p class="researchCit">We used the <a href="https://cseweb.ucsd.edu/~jmcauley/datasets/amazon_v2/">Amazon Review Dataset (Version 2) by Jianmo Ni</a>. Because the full dataset contained over 233 million reviews in total, we arbitrarily selected five smaller subcategories: Amazon Fashion (800K~), Prime Pantry (500K~), Beauty (400K~), Gift Cards (150K~), and Luxury Beauty (600K~). We tried to select some categories that were definitively related to each other (Amazon Fashion, Beauty, and Luxury Beauty) as well as a couple that were starkly dissimilar  to those in order to be able to see if training the classifier on a subcategory that is related to the subcategory we test on would impact its score and its ability to predict helpfulness accurately. We then trained our model on all five of these categories (sampling 20000 reviews from each correspondingly, each with 10000 reviews voted helpful and 10000 reviews with no votes) and studied how it performed on itself as well as the other categories.
+</p>            </div><br>
+            
+<p>We then trained our logistic regression model on each of these datasets in turn, testing its performance on both the testing data from its own category as well 
+    as from the other categories.
+</p>        </div><p></p>
+        <h3>Data Analysis</h3><p></p>
+
+                                    <div class="pill wow fadeInUp box container">
+                                        <div class="row">
+                    <div class="col-lg-5"><img src="images/highest-lowest-words.png" width="100%"></div>
+<div class="col-lg-7">
+    <p>The Bag of Words approach allows us to see the words which are most commonly associated with helpful reviews as well as those associated with unhelpful reviews as the classifier model 
+        would learn the weights associated with each featurized vector — highest weighted words are heavily associated with helpfulness, and the contrapositive also applies.
+    </p>
+    <p>
+        The table on the left shows the words which were weighted heighest and lowest across multiple training sessions, listed in order of number of training sessions. These words 
+        are likely to be most strongly associated with helpfulness and unhelpfulness. The table below shows the testing accuracies of the classifier when trained on each dataset.</p>
+    <img src="images/testingaccuracy.png" width="100%"></div>
+</div>
+<p></p>
+<div>
+<p>
+    As can be seen in the list of lowest weighted words, there seems to be an inclination towards words with a overtly positive sentiment. We decided to conduct a rudimentary sentiment analysis
+    on our data based on this observation, manually tagging every word outputted as high or low weighted as having either positive, negative, or neutral sentiment.
+</p>        
+<div class="row">
+    <div class="col-lg-4">
+        <p><br>As can be seen in the pie charts, lowest weighted words display a much stronger bias towards positive words, which comprise 38.4% of the composite lowest weighted words as opposed to only 1.6% of highest weighted words. A much more significant portion of the highest weighted words were neutral in sentiment, at 87.2% as compared to 53.6% of the lowest weighted words.</p>
+    </div>
+<div class="col-lg-4"><img src="images/lowest-weighted-words.png" width="100%"></div>
+<div class="col-lg-4"><img src="images/highest-weighted-words.png" width="100%"></div>
+</div>
+<br>
+<p>These findings suggest support for the contrapositive of the brilliant-but-cruel hypothesis: based on the small margin, we cannot necessarily conclude that we found negative words to be significantly more frequent among the model’s classification of helpful reviews, but we can say that we found positive words to be significantly more frequent among the model’s classification of reviews that were not evaluated as being helpful.</p>
+
+</div></div>
+            
+        </div>
+        </div>
+    <br><br>
+
+    <footer class="foot-nav">
+        <nav class="navbar navbar-expand-sm">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="mailto:toshaligoel@gmail.com">Email</a>
+            <li class="nav-item"><a class="nav-link" href="www.linkedin.com/in/toshaligoel">LinkedIn</a>
+            </ul>
+            
+            <li class="nav-item nav-link ml-auto">
+                &#9825; Designed and Coded by Toshali Goel &#9825; </li>
+            
+        </nav>
+    </footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
+</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+
+    <script src="script.js"></script>
+    <script> new WOW().init(); </script>
+
+    </body>
+    </html>

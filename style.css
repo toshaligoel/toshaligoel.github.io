@@ -260,6 +260,11 @@ footer {
     color: #c2c2ff;
 }
 
+.researchCit a:hover{
+    color: #2D2945;
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 815px) {
   body {
       background-repeat: no-repeat;

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css"> 
+      
+      <link rel="stylesheet" href="style.css">
+      <link rel="icon" href="images/favicon.ico">
+    <title>Probing GPT</title>
+</head>
+    
+    <nav class="head-nav navbar navbar-expand-sm">
+  
+        <a class="navbar-brand" id="logo" href="index.html"><img src="images/logo_circle.png" alt="..." width="6.5%"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">HOME</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="projects.html">PROJECTS<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="research.html">RESEARCH</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Artwork
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="fine_art.html">Fine Art</a>
+          <a class="dropdown-item" href="digital_art.html">Digital Art</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ResumeTGMSCS.pdf">RESUME</a>
+      </li>
+    </ul>
+  </div>
+    </nav>
+    
+    
+<body>
+
+<div class="container">
+    <br>
+<h1>Probing GPT</h1>
+
+<h2>Investigating Cultural and Nationality Bias in Occupational Representations</h2><br>
+    <p class="center"><em>I designed and ran a probing task to be able to quantitatively and qualitatively analyze the extent to which GPT carried implicit cultural or nationality-based bias in its representation of occupations and their popularity across various nations.</em></p><br><br>
+    
+        <img src="images/ai_occupation-prompts.png" width="100%">
+        <br><br>
+
+        <div class="fadeInUp">
+        <h3>Background and Ideation</h3>
+        <p></p>
+            <p>There are many cultural stereotypes associated with occupations and labor as a broad umbrella theme — and, further, there are countless perceptions among the Western world of several countries as being socioeconomically worse off than the West. I wanted to examine cultural stereotyping in occupational representations through the lens of NLP, with my hypothesis being that the system would naturally want to assign stereotypical and also more agrarian and menial occupations to countries that fell outside of the Eurocentric bracket that many NLP systems have shown favoritism towards.</p>
+            <br>
+            <div class="pill wow fadeInUp box container">
+                <div class="row">
+                <div class="col-lg-4"><p>This research was at least partially inspired by my own experiments with image generation, as well as the work of several other researchers. As part of our experiments with stable diffusion in class, I previously tested the response of image generating models to languages apart from English. I chose to test it with Hindi, prompting the model with various different basic words such as “red,” “tiger,” or “book,” written first in English and then translated into Hindi. The model struggled immensely to generate any relevant images with the Hindi translations, demonstrating the lack of the Hindi language in the dataset it has been trained on.</p></div>
+                <div class="col-lg-4"><img src="images/gulabjamun-eng.png" width="105%"></div>
+                <div class="col-lg-4"><img src="images/gulabjamun-hindi.png" width="105%"></div>
+            </div>
+            <br>
+            <p>For nearly every single prompt I entered in Hindi, stable diffusion generated a picture of a vaguely generic Indian scene. My hypothesis was that the model was able to recognize that the language I entered was widely associated with India, but was not able to gather much more than that from its dataset, especially not in comparison to the robust nature of the dataset in English. This linguistic bias along with the clear stereotyping of what a scene in India looked like — rural villages and little to no industrial development — inspired me to look more into the concept of socioeconomic perceptions of countries across the world in GPT.
+            <br>
+                <h5>Literature</h5>
+            <p>My research construct was also motivated by the literature review I did for the project, specifically by the <a href="https://arxiv.org/abs/2104.08465">paper written by Zhou, Ethayarajh, & Jurafsky</a> which briefly discussed the relationship between embedding similarity and GDP. The paper touched on how the bounding balls of the embeddings made it much more likely that systems were able to discern between various countries of higher GDP and socioeconomic status, while painting less economically powerful countries with wider strokes and categorizing them as one. I did a bit more research on the commonly held Western perceptions of non-European countries, and was interested to find that much of the literature discusses the 
+                perception of economic disadvantage and widespread poverty. <a href="https://doi.org/10.1016/j.annals.2005.02.002">Bandyopadhyay and Morais’s paper on India’s Self and Western Image</a>, for example, discusses the Western clumping of India into the outdated notion of the poverty-stricken “third world,” (Bandyopadhyay & Morais, 1006) similar to how <a href="https://journals.co.za/doi/abs/10.10520/EJC10105">Wallace’s paper on media representations of Africa</a> discusses the widespread associations of the continent with impoverished people and disease (Wallace 94). China has a somewhat more complex relationship with European perception, specifically due to its more established relationship with the United States, but even China faces similar mischaracterization by Western media as discussed in <a href="https://api.semanticscholar.org/CorpusID:128564197">Mackerras</a>.
+            </p>
+            </div><p></p>
+            <h3>Constructing a Probe Task</h3><p></p>
+
+            
+            <div class="pill wow fadeInUp box">
+                                    <div>
+                                        <img class="album img-fluid rounded" src="images/ai_occupation-prompts.png">  
+                                    </div>
+         <br>
+         <p>I constructed 32 prompts based on my construct of occupation in order to investigate the cultural bias of my chosen model, GPT. I operationalized the construct by coming up with 32 distinct prompts that, when completed by GPT, would result in a statement about occupations, in most cases the name of a specific occupation. I categorized these prompts as the “Neutral” condition prompts, as they contained no references to any specific countries. I then generated variations of each of the 32 prompts with the “Neutral” condition replaced with a country-specific variation; for example, “Like every other young girl, her dream job was…” became “Like every other young girl growing up in QQQ, her dream job was…” where QQQ was replaced iteratively by the name of each one of my five countries of choice.</p>                
+            </div><br>
+            
+            <p>Given that my interest was in socioeconomic perception across the world, I wanted to ensure that I picked countries with relatively disparate perceptions of status as well as countries located on either side of the Eurocentric divide. I chose the United States, the United Kingdom, China, India, and Nigeria to fulfill both of these requirements. The US and UK here represent the Western countries which I hypothesized the model would be more favorable towards, and China, India, and Nigeria are three countries with large populations to allow for a wide range of possible occupations and different relationships to the Western world.</p>
+        </div><p></p>
+        <h3>Evaluating Bias</h3><p></p>
+
+                                    <div class="pill wow fadeInUp box container">
+                                        <div class="row">
+                    <div class="col-lg-8"><img src="images/ai_probe-scores.png" width="100%"></div>
+<div class="col-lg-4"><p>My dataset contains a “Neutral” condition variation for each of the 32 prompts, and the overarching idea is to compare the results and outputs of the “Neutral” condition for each prompt with the country-specific conditions. A strong similarity between any particular country or countries and the model’s outputs in the “Neutral” condition would indicate an intrinsic bias towards certain countries, given that their outputs are what is seen as ‘standard’ when no additional information is provided. I decided to sum over the probabilities of the top 5 words suggested by GPT’s next token completion, and subtract from 1 to quantify the difference between the country-conditions and the neutral condition sentences.</p></div>
+</div>
+<p></p>
+<div><p>As can be seen, the US/America has the lowest divergence from the neutral condition, followed by the UK/England and very closely by China, then India and finally Nigeria. These results essentially represent the fact that the model is more likely to output similar results for a neutral prompt — as in, one wherein no country, culture, or location is specified — and for a prompt in which the country or location specified is in the United States. It also means that the model is least likely to return similar results for the neutral condition and for a country-specific prompt based in Nigeria, at least among these 4 country condition options. These results are relatively in line with my hypothesis, with the European/Western countries performing closest to the neutral condition and therefore indicating a slight implicit Eurocentrism in the model’s behavior.</p></div>
+        </div></div>
+            
+        </div>
+        </div>
+    <br><br>
+
+    <footer class="foot-nav">
+        <nav class="navbar navbar-expand-sm">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="mailto:toshaligoel@gmail.com">Email</a>
+            <li class="nav-item"><a class="nav-link" href="www.linkedin.com/in/toshaligoel">LinkedIn</a>
+            </ul>
+            
+            <li class="nav-item nav-link ml-auto">
+                &#9825; Designed and Coded by Toshali Goel &#9825; </li>
+            
+        </nav>
+    </footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
+</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+
+    <script src="script.js"></script>
+    <script> new WOW().init(); </script>
+
+    </body>
+    </html>
