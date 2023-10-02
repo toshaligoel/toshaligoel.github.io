@@ -265,6 +265,17 @@ footer {
     text-decoration: underline;
 }
 
+.bigwords {
+    color: white
+}
+
+.bigwords:hover {
+    color: white;
+    text-decoration: underline;
+    text-decoration-thickness: 1pt;
+    text-underline-offset: 10pt;
+}
+
 @media screen and (max-width: 815px) {
   body {
       background-repeat: no-repeat;
